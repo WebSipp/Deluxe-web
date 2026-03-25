@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Detail Produk — Deluxe Parfume</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400;1,600&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --cream:#F5F0E8;--black:#0A0A0A;--dark:#141414;--dark2:#1C1A18;
+  --gold:#C9A96E;--gold2:#E2C896;--silver:#A0A0A0;
+  --border:rgba(201,169,110,.18);--border2:rgba(201,169,110,.38);
+  --font-d:'Cormorant Garamond',serif;--font-b:'DM Sans',sans-serif;
+  --nav-h:60px;
+}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{font-family:var(--font-b);background:var(--dark);color:var(--cream);overflow-x:hidden;-webkit-font-smoothing:antialiased}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:200;height:var(--nav-h);display:flex;align-items:center;justify-content:space-between;padding:0 20px;background:rgba(20,20,20,.96);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);}
+.nav-logo{display:flex;align-items:center;color:var(--cream);text-decoration:none}
+.nav-logo svg{height:36px;width:auto;transition:opacity .2s}
+.nav-logo:hover svg{opacity:.8}
+.nav-right{display:flex;align-items:center;gap:10px}
+.cart-btn{position:relative;display:flex;align-items:center;justify-content:center;width:40px;height:40px;border-radius:50%;border:1px solid var(--border2);background:transparent;cursor:pointer;font-size:17px;-webkit-tap-highlight-color:transparent;}
+.cart-badge{position:absolute;top:-3px;right:-3px;min-width:17px;height:17px;border-radius:10px;padding:0 4px;background:var(--gold);color:var(--black);font-size:9px;font-weight:700;display:flex;align-items:center;justify-content:center;transition:transform .2s;}
+.cart-badge.bump{transform:scale(1.5)}
+.hamburger{display:flex;flex-direction:column;gap:5px;background:none;border:none;cursor:pointer;padding:4px;-webkit-tap-highlight-color:transparent;}
+.hamburger span{display:block;width:22px;height:1.5px;background:var(--cream);transition:all .3s;transform-origin:center}
+.hamburger.open span:nth-child(1){transform:translateY(6.5px) rotate(45deg)}
+.hamburger.open span:nth-child(2){opacity:0;transform:scaleX(0)}
+.hamburger.open span:nth-child(3){transform:translateY(-6.5px) rotate(-45deg)}
+.mobile-menu{position:fixed;top:var(--nav-h);left:0;right:0;bottom:0;background:rgba(10,10,10,.98);backdrop-filter:blur(16px);z-index:199;padding:40px 24px;display:flex;flex-direction:column;gap:28px;transform:translateX(-100%);transition:transform .35s cubic-bezier(.4,0,.2,1);}
+.mobile-menu.open{transform:translateX(0)}
+.mobile-menu a{font-family:var(--font-d);font-size:30px;font-style:italic;color:var(--cream);text-decoration:none;opacity:.7;transition:opacity .2s,color .2s;}
+.mobile-menu a:hover{opacity:1;color:var(--gold)}
+.mm-divider{height:1px;background:var(--border)}
+.mm-wa{display:inline-flex;align-items:center;gap:10px;background:#25D366;color:#fff;padding:14px 24px;font-family:var(--font-b);font-size:12px;font-weight:500;letter-spacing:.1em;text-transform:uppercase;text-decoration:none;margin-top:auto;}
+.nav-links{display:none}
+
+/* BUTTONS */
+.btn-gold{display:inline-flex;align-items:center;justify-content:center;gap:8px;background:var(--gold);color:var(--black);padding:14px 28px;font-size:11px;font-weight:500;letter-spacing:.16em;text-transform:uppercase;text-decoration:none;border:none;cursor:pointer;font-family:var(--font-b);transition:background .2s;-webkit-tap-highlight-color:transparent;}
+.btn-gold:hover{background:var(--gold2)}
+.btn-ghost{display:inline-flex;align-items:center;justify-content:center;gap:8px;background:transparent;color:var(--cream);padding:13px 28px;font-size:11px;font-weight:400;letter-spacing:.16em;text-transform:uppercase;text-decoration:none;border:1px solid rgba(245,240,232,.3);cursor:pointer;font-family:var(--font-b);transition:border-color .2s,color .2s;}
+.btn-ghost:hover{border-color:var(--gold);color:var(--gold)}
+
+/* CART DRAWER */
+.overlay{position:fixed;inset:0;background:rgba(0,0,0,.6);z-index:300;opacity:0;pointer-events:none;transition:opacity .3s}
+.overlay.open{opacity:1;pointer-events:all}
+.cart-drawer{position:fixed;top:0;right:0;bottom:0;width:min(100vw,400px);background:var(--dark);border-left:1px solid var(--border);z-index:301;display:flex;flex-direction:column;transform:translateX(100%);transition:transform .38s cubic-bezier(.4,0,.2,1);}
+.cart-drawer.open{transform:translateX(0)}
+.cart-head{display:flex;justify-content:space-between;align-items:center;padding:20px;border-bottom:1px solid var(--border);}
+.cart-head h3{font-family:var(--font-d);font-size:20px;color:var(--cream);font-weight:400}
+.cart-close{background:none;border:1px solid var(--border);color:var(--silver);width:32px;height:32px;cursor:pointer;font-size:16px;display:flex;align-items:center;justify-content:center;}
+.cart-items{flex:1;overflow-y:auto;padding:16px 20px;-webkit-overflow-scrolling:touch}
+.cart-empty{text-align:center;padding:48px 0;color:var(--silver);font-family:var(--font-d);font-style:italic;font-size:18px}
+.cart-item{display:flex;gap:12px;padding:14px 0;border-bottom:1px solid var(--border)}
+.c-img{width:60px;height:76px;object-fit:cover;flex-shrink:0;background:var(--dark2)}
+.c-info{flex:1;min-width:0}
+.c-name{font-family:var(--font-d);font-size:14px;color:var(--cream);margin-bottom:2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.c-note{font-size:11px;color:var(--silver);margin-bottom:8px}
+.c-row{display:flex;justify-content:space-between;align-items:center}
+.c-price{font-size:12px;color:var(--gold)}
+.qty-ctrl{display:flex;align-items:center;border:1px solid var(--border2)}
+.qty-btn{width:30px;height:30px;border:none;background:none;color:var(--cream);cursor:pointer;font-size:16px;display:flex;align-items:center;justify-content:center;min-height:44px;-webkit-tap-highlight-color:transparent;}
+.qty-num{font-size:12px;min-width:24px;text-align:center;color:var(--cream)}
+.cart-foot{padding:16px 20px;border-top:1px solid var(--border)}
+.cart-total-row{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:14px}
+.cart-total-label{font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--silver)}
+.cart-total-val{font-family:var(--font-d);font-size:24px;color:var(--gold)}
+.btn-co{width:100%;padding:15px;background:var(--gold);color:var(--black);border:none;font-family:var(--font-b);font-size:11px;font-weight:500;letter-spacing:.16em;text-transform:uppercase;cursor:pointer;}
+
+/* WA FLOAT */
+.wa-float{position:fixed;bottom:24px;right:20px;z-index:150;width:50px;height:50px;border-radius:50%;background:#25D366;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 16px rgba(37,211,102,.35);text-decoration:none;color:#fff;transition:transform .2s;}
+.wa-float:hover{transform:scale(1.08)}
+
+/* EYEBROW */
+.eyebrow-line{width:28px;height:1px;background:var(--gold);flex-shrink:0}
+.eyebrow-text{font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--gold)}
+.s-eyebrow{display:flex;align-items:center;gap:10px;margin-bottom:10px}
+.s-title{font-family:var(--font-d);font-size:clamp(26px,7vw,48px);color:var(--cream);line-height:1.15;font-weight:400;margin-bottom:8px}
+.s-title em{font-style:italic;color:var(--gold2)}
+.reveal{opacity:0;transform:translateY(20px);transition:opacity .65s ease,transform .65s ease}
+.reveal.visible{opacity:1;transform:none}
+
+/* DESKTOP NAV */
+@media(min-width:960px){
+  :root{--nav-h:68px}
+  nav{padding:0 5%}
+  .hamburger{display:none}
+  .mobile-menu{display:none!important}
+  .nav-links{display:flex;gap:32px;list-style:none;position:absolute;left:50%;transform:translateX(-50%);}
+  .nav-links a{font-size:11px;color:var(--silver);text-decoration:none;letter-spacing:.14em;text-transform:uppercase;transition:color .2s;position:relative;}
+  .nav-links a::after{content:'';position:absolute;bottom:-4px;left:0;right:0;height:1px;background:var(--gold);transform:scaleX(0);transition:transform .25s;}
+  .nav-links a:hover{color:var(--cream)}
+  .nav-links a:hover::after{transform:scaleX(1)}
+}
+
+.breadcrumb{padding:calc(var(--nav-h)+16px) 20px 0;display:flex;gap:8px;align-items:center;font-size:11px;color:var(--silver);flex-wrap:wrap}
+.breadcrumb a{color:var(--silver);text-decoration:none;transition:color .2s}
+.breadcrumb a:hover{color:var(--gold)}
+.product-page{padding:16px 20px 64px}
+.gallery-main{border-radius:2px;overflow:hidden;aspect-ratio:4/3;position:relative;background:var(--dark2);margin-bottom:10px}
+.gallery-main img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .4s}
+.gallery-main:hover img{transform:scale(1.03)}
+.gallery-thumbs{display:flex;gap:8px;overflow-x:auto;padding-bottom:4px;-webkit-overflow-scrolling:touch}
+.thumb{width:64px;height:80px;border-radius:2px;overflow:hidden;flex-shrink:0;cursor:pointer;border:1.5px solid transparent;transition:border-color .2s;-webkit-tap-highlight-color:transparent;background:var(--dark2);}
+.thumb.active{border-color:var(--gold)}
+.thumb img{width:100%;height:100%;object-fit:cover;display:block}
+.prod-info{padding-top:24px}
+.prod-cat{font-size:9px;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);margin-bottom:8px}
+.prod-name{font-family:var(--font-d);font-size:clamp(30px,8vw,48px);color:var(--cream);font-weight:400;line-height:1.1;margin-bottom:8px}
+.prod-desc-text{font-size:13px;color:var(--silver);line-height:1.7;margin-bottom:20px}
+.badge-best{display:inline-block;background:var(--gold);color:var(--black);padding:4px 12px;font-size:10px;font-weight:500;letter-spacing:.1em;text-transform:uppercase;margin-bottom:16px}
+.price-block{background:var(--dark2);border:1px solid var(--border);padding:16px;margin-bottom:20px}
+.price-row{display:flex;justify-content:space-between;align-items:center;padding:8px 0;border-bottom:1px solid var(--border)}
+.price-row:last-child{border-bottom:none}
+.price-size{font-size:12px;color:var(--silver)}
+.price-val{font-family:var(--font-d);font-size:20px;color:var(--gold)}
+.size-section{margin-bottom:20px}
+.field-label{font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--silver);margin-bottom:10px}
+.size-opts{display:flex;gap:0;border:1px solid var(--border)}
+.size-btn{flex:1;padding:13px;border:none;background:transparent;color:var(--silver);font-family:var(--font-b);font-size:12px;font-weight:400;letter-spacing:.08em;cursor:pointer;transition:all .2s;min-height:44px;-webkit-tap-highlight-color:transparent;}
+.size-btn:not(:last-child){border-right:1px solid var(--border)}
+.size-btn.active{background:var(--gold);color:var(--black);font-weight:500}
+.qty-section{margin-bottom:24px}
+.qty-wrap{display:flex;align-items:center;border:1px solid var(--border2);width:fit-content}
+.qty-btn-big{width:48px;height:48px;border:none;background:none;color:var(--cream);cursor:pointer;font-size:20px;display:flex;align-items:center;justify-content:center;-webkit-tap-highlight-color:transparent;}
+.qty-num-big{font-size:16px;min-width:40px;text-align:center;color:var(--cream)}
+.cta-stack{display:flex;flex-direction:column;gap:10px;margin-bottom:28px}
+.btn-wa-buy{display:flex;align-items:center;justify-content:center;gap:10px;background:#25D366;color:#fff;padding:15px;font-size:11px;font-weight:500;letter-spacing:.12em;text-transform:uppercase;border:none;cursor:pointer;font-family:var(--font-b);width:100%;-webkit-tap-highlight-color:transparent;}
+.acc-wrap{border-top:1px solid var(--border)}
+.acc-item{border-bottom:1px solid var(--border)}
+.acc-head{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:16px 0;cursor:pointer;font-size:13px;color:var(--cream);-webkit-tap-highlight-color:transparent;user-select:none;}
+.acc-icon{width:24px;height:24px;border:1px solid var(--border2);display:flex;align-items:center;justify-content:center;font-size:16px;color:var(--gold);flex-shrink:0;transition:all .25s}
+.acc-item.open .acc-icon{transform:rotate(45deg);background:var(--gold);color:var(--black);border-color:var(--gold)}
+.acc-body{max-height:0;overflow:hidden;font-size:13px;color:var(--silver);line-height:1.8;transition:max-height .35s ease,padding .25s}
+.acc-item.open .acc-body{max-height:400px;padding-bottom:18px}
+.related{padding:48px 20px;background:var(--dark2);border-top:1px solid var(--border)}
+.rel-eyebrow{font-size:9px;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);margin-bottom:8px}
+.rel-title{font-family:var(--font-d);font-size:28px;color:var(--cream);margin-bottom:24px;font-weight:400}
+.rel-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1px;background:var(--border);border:1px solid var(--border)}
+.rel-card{background:var(--dark2);cursor:pointer;-webkit-tap-highlight-color:transparent;}
+.rel-img{aspect-ratio:3/4;overflow:hidden;background:var(--dark2)}
+.rel-img img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .4s;filter:brightness(.88)}
+.rel-card:hover .rel-img img{transform:scale(1.04);filter:brightness(1)}
+.rel-body{padding:10px 12px 14px}
+.rel-name{font-family:var(--font-d);font-size:14px;color:var(--cream);margin-bottom:3px}
+.rel-desc{font-size:11px;color:var(--silver);margin-bottom:6px;line-height:1.35}
+.rel-price{font-size:11px;color:var(--gold)}
+@media(min-width:640px){
+  .gallery-main{aspect-ratio:3/4}
+  .product-page{padding:20px 40px 80px}
+  .breadcrumb{padding:calc(var(--nav-h)+20px) 40px 0}
+  .related{padding:60px 40px}
+  .cta-stack{flex-direction:row}
+  .btn-gold,.btn-wa-buy{flex:1}
+}
+@media(min-width:960px){
+  .breadcrumb{padding:calc(var(--nav-h)+24px) 5% 0}
+  .product-page{display:grid;grid-template-columns:1fr 1fr;gap:60px;padding:24px 5% 100px;align-items:start}
+  .gallery-main{aspect-ratio:3/4}
+  .gallery-sticky{position:sticky;top:calc(var(--nav-h)+24px)}
+  .prod-info{padding-top:0}
+  .rel-grid{grid-template-columns:repeat(4,1fr)}
+  .related{padding:80px 5%}
+}
+</style>
+</head>
+<body>
+<nav>
+  <a href="index.html" class="nav-logo"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 220 64" aria-label="Deluxe Parfume">
+  <text x="4" y="44" font-family="Palatino Linotype,Palatino,Book Antiqua,Georgia,serif" font-size="48" font-style="italic" font-weight="400" fill="currentColor" letter-spacing="-1">Deluxe</text>
+  <text x="7" y="60" font-family="Georgia,serif" font-size="9" font-weight="400" fill="currentColor" letter-spacing="5.5">EAU DE PARFUME</text>
+</svg></a>
+  <ul class="nav-links">
+    <li><a href="index.html#categories">Koleksi</a></li>
+    <li><a href="index.html#products">Produk</a></li>
+    <li><a href="index.html#promo">Promo</a></li>
+    <li><a href="index.html#testimonials">Testimoni</a></li>
+    <li><a href="index.html#faq">FAQ</a></li>
+  </ul>
+  <div class="nav-right">
+    <button class="cart-btn" onclick="toggleCart()">🛒<span class="cart-badge" id="cartBadge">0</span></button>
+    <button class="hamburger" id="hamburger" onclick="toggleMenu()"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+<div class="mobile-menu" id="mobileMenu">
+  <a href="index.html#categories" onclick="closeMenu()">Koleksi</a>
+  <a href="index.html#products" onclick="closeMenu()">Produk</a>
+  <a href="index.html#promo" onclick="closeMenu()">Promo</a>
+  <a href="index.html#testimonials" onclick="closeMenu()">Testimoni</a>
+  <a href="index.html#faq" onclick="closeMenu()">FAQ</a>
+  <div class="mm-divider"></div>
+  <a href="https://wa.me/6283835540864" class="mm-wa" target="_blank" onclick="closeMenu()"><svg width="18" height="18" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg> Chat WhatsApp</a>
+</div>
+
+<div class="breadcrumb">
+  <a href="index.html">Home</a><span>›</span>
+  <a href="index.html#products">Produk</a><span>›</span>
+  <span id="bcName">—</span>
+</div>
+
+<div class="product-page">
+  <div class="gallery-sticky">
+    <div class="gallery-main"><img id="mainImg" src="" alt="Produk" loading="lazy"></div>
+    <div class="gallery-thumbs" id="thumbsRow"></div>
+  </div>
+  <div class="prod-info">
+    <div class="prod-cat" id="prodCat"></div>
+    <h1 class="prod-name" id="prodName"></h1>
+    <div id="badgeRow"></div>
+    <div class="prod-desc-text" id="prodDesc"></div>
+    <div class="price-block">
+      <div class="price-row"><span class="price-size">30ml</span><span class="price-val">Rp 35.000</span></div>
+      <div class="price-row"><span class="price-size">60ml</span><span class="price-val">Rp 60.000</span></div>
+    </div>
+    <div class="size-section">
+      <div class="field-label">Pilih Ukuran</div>
+      <div class="size-opts">
+        <button class="size-btn active" id="btn30" onclick="selSize=30;document.getElementById('btn30').classList.add('active');document.getElementById('btn60').classList.remove('active')">30ml — Rp 35.000</button>
+        <button class="size-btn" id="btn60" onclick="selSize=60;document.getElementById('btn60').classList.add('active');document.getElementById('btn30').classList.remove('active')">60ml — Rp 60.000</button>
+      </div>
+    </div>
+    <div class="qty-section">
+      <div class="field-label" style="margin-bottom:10px">Jumlah</div>
+      <div class="qty-wrap">
+        <button class="qty-btn-big" onclick="changeQty(-1)">−</button>
+        <span class="qty-num-big" id="qtyNum">1</span>
+        <button class="qty-btn-big" onclick="changeQty(1)">+</button>
+      </div>
+    </div>
+    <div class="cta-stack">
+      <button class="btn-gold" onclick="handleCart()">+ Tambah ke Keranjang</button>
+      <button class="btn-wa-buy" onclick="handleBuyNow()"><svg width="18" height="18" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg> Beli via WhatsApp</button>
+    </div>
+    <div class="acc-wrap">
+      <div class="acc-item open" id="acc0">
+        <div class="acc-head" onclick="document.getElementById('acc0').classList.toggle('open')"><span>Deskripsi Produk</span><div class="acc-icon">+</div></div>
+        <div class="acc-body" id="accBody0"></div>
+      </div>
+      <div class="acc-item" id="acc1">
+        <div class="acc-head" onclick="document.getElementById('acc1').classList.toggle('open')"><span>Informasi Pemesanan</span><div class="acc-icon">+</div></div>
+        <div class="acc-body"><p>Tersedia 30ml & 60ml. Metode bayar: QRIS · Dana · OVO · GoPay · ShopeePay · COD.<br><br>Pengiriman: Ambil di tempat · JNE · J&T · SiCepat. COD untuk area Bogor Selatan.</p></div>
+      </div>
+      <div class="acc-item" id="acc2">
+        <div class="acc-head" onclick="document.getElementById('acc2').classList.toggle('open')"><span>Cara Penggunaan</span><div class="acc-icon">+</div></div>
+        <div class="acc-body"><p>Semprotkan dari jarak 15–20 cm ke titik nadi: pergelangan tangan, leher, belakang telinga. Simpan di tempat sejuk, jauh dari sinar matahari langsung.</p></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="related">
+  <div class="rel-eyebrow">Mungkin Kamu Suka</div>
+  <div class="rel-title">Produk Lainnya</div>
+  <div class="rel-grid" id="relGrid"></div>
+</div>
+
+<div class="overlay" id="overlay" onclick="toggleCart()"></div>
+<div class="cart-drawer" id="cartDrawer">
+  <div class="cart-head"><h3>Keranjang</h3><button class="cart-close" onclick="toggleCart()">✕</button></div>
+  <div class="cart-items" id="cartItems"><div class="cart-empty">Keranjang masih kosong ✦</div></div>
+  <div class="cart-foot" id="cartFoot" style="display:none">
+    <div class="cart-total-row"><span class="cart-total-label">Total</span><span class="cart-total-val" id="cartTotal">Rp 0</span></div>
+    <button class="btn-co" onclick="goCheckout()">Lanjut Checkout →</button>
+  </div>
+</div>
+<a href="https://wa.me/6283835540864" class="wa-float" target="_blank" aria-label="Chat WhatsApp"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg></a>
+
+<script>
+
+const WA="6283835540864";
+const PRICE_30=35000,PRICE_60=60000;
+const IMAGE_MAP={
+  "IMG1":"https://drive.google.com/thumbnail?id=10ROasv7nHmF1HB-IfY-AeOgl52ZM0-gh&sz=w800",
+  "IMG2":"https://drive.google.com/thumbnail?id=1Gee_cZpaNDf3HrlsOdLHT5dalxXumApd&sz=w800",
+  "IMG3":"https://drive.google.com/thumbnail?id=1OF8RWpcQyYhd2x2URUP9QpiYnxcI9x7n&sz=w800",
+  "IMG4":"https://drive.google.com/thumbnail?id=1QE2zxZR2cGuIH6-Plh9EJmdS1395sN89&sz=w800",
+  "IMG5":"https://drive.google.com/thumbnail?id=1ZLqQRfCoaPJbsMPxvr8kTS1qDgAi1xJY&sz=w800",
+  "IMG6":"https://drive.google.com/thumbnail?id=1_zAOPvVnbFyPqxYFeel8PesExVMg0mdQ&sz=w800",
+  "IMG7":"https://drive.google.com/thumbnail?id=1cpXNKivNyG5NW8mjiPnqw-AVTXaMQYW5&sz=w800",
+  "IMG8":"https://drive.google.com/thumbnail?id=1dLDsT5G9n2_Rc9wjfSiOz9cQa0CkJQ6G&sz=w800",
+  "IMG9":"https://drive.google.com/thumbnail?id=1hAMy2BQmJ3tKsnarOKkV38k66iMI13-1&sz=w800",
+  "IMG10":"https://drive.google.com/thumbnail?id=1juedfJWGpte4KJDGbKkL5-k-hszNPADq&sz=w800",
+  "IMG11":"https://drive.google.com/thumbnail?id=1o7qotkTstEsBdK0_V6cfGqfnNkinrFyd&sz=w800",
+  "IMG12":"https://drive.google.com/thumbnail?id=1pKocdDl3PTtc_HE7RQElq0oDZ2UKqLzr&sz=w800",
+  "IMG13":"https://drive.google.com/thumbnail?id=1z4v6jtNYjgSq3TCXV4xa0OzK5Tc-UTSU&sz=w800",
+  "IMG14":"https://drive.google.com/thumbnail?id=10ROasv7nHmF1HB-IfY-AeOgl52ZM0-gh&sz=w800",
+};
+const PRODUCTS=[
+  {id:1, name:"Aqua Kiss",        desc:"Segar, aquatic, ringan seperti air laut",        cat:"fresh",    badge:"",     imgs:["IMG3","IMG7","IMG11"]},
+  {id:2, name:"Avril",            desc:"Manis lembut dengan sentuhan floral ringan",     cat:"floral",   badge:"",     imgs:["IMG13","IMG2","IMG11"]},
+  {id:3, name:"Balqis",           desc:"Manis elegan dengan nuansa oriental",            cat:"oriental", badge:"",     imgs:["IMG5","IMG6","IMG9"]},
+  {id:4, name:"Buqiah",           desc:"Hangat, sedikit manis dan khas arabian",         cat:"oriental", badge:"",     imgs:["IMG6","IMG5","IMG12"]},
+  {id:5, name:"Baccarat",         desc:"Manis elegan, sedikit woody dan mewah",          cat:"oriental", badge:"best", imgs:["IMG8","IMG4","IMG10"]},
+  {id:6, name:"Bulgari Aqua",     desc:"Segar laut, clean dan maskulin",                cat:"fresh",    badge:"best", imgs:["IMG4","IMG7","IMG3"]},
+  {id:7, name:"Bulgari Extreme",  desc:"Citrus segar dengan kesan kuat dan maskulin",   cat:"fresh",    badge:"",     imgs:["IMG7","IMG3","IMG11"]},
+  {id:8, name:"Bubble Gum",       desc:"Manis permen, playful dan ceria",               cat:"gourmand", badge:"",     imgs:["IMG2","IMG13","IMG1"]},
+  {id:9, name:"Black Opium",      desc:"Manis hangat, sedikit kopi dan vanilla",        cat:"oriental", badge:"",     imgs:["IMG5","IMG8","IMG6"]},
+  {id:10,name:"Dior Sauvage",     desc:"Fresh spicy, maskulin dan elegan",              cat:"fresh",    badge:"",     imgs:["IMG3","IMG4","IMG7"]},
+  {id:11,name:"Dunhill Blue",     desc:"Segar, ringan, cocok untuk harian",             cat:"fresh",    badge:"",     imgs:["IMG4","IMG3","IMG11"]},
+  {id:12,name:"Escada Moon",      desc:"Fruity manis, segar dan youthful",              cat:"gourmand", badge:"",     imgs:["IMG13","IMG2","IMG11"]},
+  {id:13,name:"Grey",             desc:"Clean, kalem dan netral",                       cat:"unisex",   badge:"",     imgs:["IMG11","IMG13","IMG3"]},
+  {id:14,name:"Gastby",           desc:"Segar maskulin dengan sentuhan sporty",         cat:"fresh",    badge:"",     imgs:["IMG7","IMG4","IMG3"]},
+  {id:15,name:"Giv",              desc:"Elegan, ringan dengan nuansa floral fresh",     cat:"floral",   badge:"",     imgs:["IMG2","IMG13","IMG1"]},
+  {id:16,name:"Jay Rose",         desc:"Mawar manis, lembut dan feminin",               cat:"floral",   badge:"",     imgs:["IMG13","IMG2","IMG11"]},
+  {id:17,name:"Manggo",           desc:"Buah mangga manis segar, tropis",               cat:"gourmand", badge:"",     imgs:["IMG1","IMG11","IMG2"]},
+  {id:18,name:"Nagita",           desc:"Manis soft, elegan dan feminin",                cat:"floral",   badge:"",     imgs:["IMG11","IMG13","IMG2"]},
+  {id:19,name:"One Million",      desc:"Manis hangat, bold dan mewah",                  cat:"oriental", badge:"",     imgs:["IMG6","IMG5","IMG9"]},
+  {id:20,name:"Scandalous",       desc:"Manis kuat, sedikit sensual",                   cat:"oriental", badge:"",     imgs:["IMG9","IMG6","IMG5"]},
+  {id:21,name:"Vanilla Choco",    desc:"Coklat dan vanilla, manis hangat",              cat:"gourmand", badge:"",     imgs:["IMG10","IMG1","IMG12"]},
+  {id:22,name:"Vanilla Body Soft",desc:"Vanilla lembut, ringan dan nyaman",             cat:"gourmand", badge:"best", imgs:["IMG12","IMG10","IMG1"]},
+  {id:23,name:"Vanilla Ice",      desc:"Vanilla segar, manis tapi ringan",              cat:"gourmand", badge:"",     imgs:["IMG1","IMG12","IMG10"]},
+  {id:24,name:"Zwitsal",          desc:"Wangi bayi, lembut, bersih dan calming",       cat:"unisex",   badge:"",     imgs:["IMG11","IMG11","IMG13"]},
+  {id:25,name:"212 VIP Man",      desc:"Fresh manis, modern dan elegan",                cat:"fresh",    badge:"best", imgs:["IMG8","IMG4","IMG3"]},
+];
+const FAQS=[
+  {q:"Berapa lama ketahanan aromanya?",a:"Umumnya 4–8 jam di kulit, tergantung varian dan cara pemakaian. Varian Eau de Parfum standar bisa 6–8 jam, sedangkan varian Premium bisa mencapai 8–12 jam atau lebih."},
+  {q:"Bagaimana prosedur pesanan, pengiriman, dan COD?",a:"Pesanan bisa dilakukan melalui website ini atau langsung via WhatsApp. Sebutkan varian, ukuran (30ml/60ml), jumlah, dan alamat. Pengiriman via ekspedisi dengan free ongkir area tertentu. COD tersedia untuk area Bogor Selatan — hubungi kami untuk konfirmasi."},
+  {q:"Apakah ada garansi, retur, atau penukaran?",a:"Kami menjamin produk diterima dalam kondisi baik. Retur hanya berlaku jika barang rusak atau salah kirim. Produk yang sudah dibuka atau terpakai tidak bisa diretur. Penukaran varian bisa dilakukan selama stok tersedia."},
+  {q:"Apa perbedaan parfum original dan parfum premium?",a:"Parfum Original: aroma standar, ketahanan normal untuk sehari-hari. Parfum Premium: aroma lebih kuat, ketahanan lebih lama, menggunakan racikan khusus dengan tambahan konsentrat parfum sehingga kualitas lebih tinggi."},
+];
+const TESTIMONIALS=[
+  {stars:5,text:"Wanginya tahan lama banget, dari pagi sampai malam masih tercium. Packaging holographic-nya beda dari parfum lain!",author:"Rina S.",city:"Bogor",product:"Baccarat"},
+  {stars:5,text:"Beli buat hadiah, katanya wanginya enak dan premium banget. Harganya terjangkau untuk kualitas sebagus ini.",author:"Dani R.",city:"Jakarta",product:"212 VIP Man"},
+  {stars:5,text:"Sudah order 3x dan selalu puas! Pengirimannya cepat dan wanginya cocok banget sama selera saya.",author:"Mega P.",city:"Depok",product:"Bulgari Aqua"},
+];
+function formatRp(n){return"Rp "+n.toLocaleString('id-ID');}
+function getCart(){try{return JSON.parse(localStorage.getItem("dlx_cart")||"{}")}catch{return{}}}
+function saveCart(c){localStorage.setItem("dlx_cart",JSON.stringify(c))}
+function cartCount(){return Object.values(getCart()).reduce((a,b)=>a+b,0)}
+function updateBadge(){const b=document.getElementById("cartBadge");if(b)b.textContent=cartCount();}
+function addToCart(id,e,size=30){
+  if(e)e.stopPropagation();
+  const c=getCart(),k=id+"_"+size;
+  c[k]=(c[k]||0)+1;saveCart(c);
+  const b=document.getElementById("cartBadge");
+  if(b){b.textContent=cartCount();b.classList.add("bump");setTimeout(()=>b.classList.remove("bump"),300);}
+}
+function toggleMenu(){
+  const hb=document.getElementById('hamburger'),mm=document.getElementById('mobileMenu');
+  if(!hb||!mm)return;
+  hb.classList.toggle('open');mm.classList.toggle('open');
+  document.body.style.overflow=mm.classList.contains('open')?'hidden':'';
+}
+function closeMenu(){
+  const hb=document.getElementById('hamburger'),mm=document.getElementById('mobileMenu');
+  if(hb)hb.classList.remove('open');
+  if(mm)mm.classList.remove('open');
+  document.body.style.overflow='';
+}
+function toggleCart(){
+  const ov=document.getElementById('overlay'),cd=document.getElementById('cartDrawer');
+  if(!ov||!cd)return;
+  ov.classList.toggle('open');cd.classList.toggle('open');
+  if(document.getElementById('cartDrawer').classList.contains('open')){document.body.style.overflow='hidden';renderCart();}
+  else{document.body.style.overflow='';}
+}
+function renderCart(){
+  const cart=getCart(),keys=Object.keys(cart);
+  const items=document.getElementById('cartItems'),foot=document.getElementById('cartFoot');
+  updateBadge();
+  if(!keys.length){items.innerHTML='<div class="cart-empty">Keranjang masih kosong ✦</div>';if(foot)foot.style.display='none';return;}
+  if(foot)foot.style.display='block';let total=0;
+  items.innerHTML=keys.map(key=>{
+    const[pid,size]=key.split('_');const p=PRODUCTS.find(x=>x.id==pid);if(!p)return'';
+    const unit=parseInt(size)===30?PRICE_30:PRICE_60;const sub=unit*cart[key];total+=sub;
+    return`<div class="cart-item"><img class="c-img" src="${IMAGE_MAP[p.imgs[0]]}" alt="${p.name}">
+    <div class="c-info"><div class="c-name">${p.name}</div><div class="c-note">${size}ml</div>
+    <div class="c-row"><div class="c-price">${formatRp(sub)}</div>
+    <div class="qty-ctrl"><button class="qty-btn" onclick="cQty('${key}',-1)">−</button><span class="qty-num">${cart[key]}</span><button class="qty-btn" onclick="cQty('${key}',1)">+</button></div>
+    </div></div></div>`;
+  }).join('');
+  const ct=document.getElementById('cartTotal');if(ct)ct.textContent=formatRp(total);
+}
+function cQty(key,d){const c=getCart();c[key]=(c[key]||0)+d;if(c[key]<=0)delete c[key];saveCart(c);renderCart();}
+function goCheckout(){document.body.style.overflow='';window.location.href='checkout.html';}
+
+const pid=parseInt(new URLSearchParams(location.search).get('id'))||1;
+const P=PRODUCTS.find(p=>p.id===pid)||PRODUCTS[0];
+let selSize=30,qty=1;
+function changeQty(d){qty=Math.max(1,qty+d);document.getElementById('qtyNum').textContent=qty;}
+function handleCart(){
+  const c=getCart(),k=P.id+"_"+selSize;c[k]=(c[k]||0)+qty;saveCart(c);updateBadge();toggleCart();
+}
+function handleBuyNow(){
+  const price=selSize===30?PRICE_30:PRICE_60;
+  const msg=`Halo Deluxe! Saya ingin memesan:\n\n✦ ${P.name} (${selSize}ml) ×${qty} = ${formatRp(price*qty)}\n\nMohon konfirmasi ketersediaan. Terima kasih!`;
+  window.open(`https://wa.me/${WA}?text=${encodeURIComponent(msg)}`,'_blank');
+}
+function init(){
+  document.title=P.name+" — Deluxe Parfume";
+  document.getElementById('bcName').textContent=P.name;
+  document.getElementById('prodCat').textContent=P.cat.toUpperCase();
+  document.getElementById('prodName').textContent=P.name;
+  document.getElementById('prodDesc').textContent=P.desc;
+  document.getElementById('accBody0').innerHTML=`<p>${P.desc}</p>`;
+  if(P.badge==='best') document.getElementById('badgeRow').innerHTML='<span class="badge-best">Best Seller</span>';
+  const imgs=P.imgs.map(k=>IMAGE_MAP[k]);
+  document.getElementById('mainImg').src=imgs[0];
+  document.getElementById('thumbsRow').innerHTML=imgs.map((src,i)=>`
+    <div class="thumb ${i===0?'active':''}" onclick="setImg(this,'${src}')"><img src="${src}" loading="lazy"></div>`).join('');
+  const rel=PRODUCTS.filter(p=>p.id!==P.id&&p.cat===P.cat).concat(PRODUCTS.filter(p=>p.id!==P.id&&p.cat!==P.cat)).slice(0,4);
+  document.getElementById('relGrid').innerHTML=rel.map(p=>`
+    <div class="rel-card" onclick="location.href='product.html?id=${p.id}'">
+      <div class="rel-img"><img src="${IMAGE_MAP[p.imgs[0]]}" alt="${p.name}" loading="lazy"></div>
+      <div class="rel-body"><div class="rel-name">${p.name}</div><div class="rel-desc">${p.desc}</div><div class="rel-price">${formatRp(PRICE_30)} / 30ml</div></div>
+    </div>`).join('');
+  updateBadge();
+}
+function setImg(el,src){
+  document.getElementById('mainImg').src=src;
+  document.querySelectorAll('.thumb').forEach(t=>t.classList.remove('active'));
+  el.classList.add('active');
+}
+init();
+</script>
+</body>
+</html>
