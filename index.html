@@ -114,7 +114,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:200;height:var(--nav-h);display:
 .m-item{font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--black);font-weight:500;padding:0 32px;display:flex;align-items:center;gap:14px}
 .m-dot{width:3px;height:3px;border-radius:50%;background:rgba(0,0,0,.35);flex-shrink:0}
 section{padding:64px 20px}
-.categories{background:var(--dark);padding-top:64px}
+.categories{background:var(--dark)}
 .cat-header{margin-bottom:28px}
 .cat-grid{display:grid;grid-template-columns:1fr;gap:2px}
 .cat-card{position:relative;overflow:hidden;cursor:pointer;height:220px;-webkit-tap-highlight-color:transparent;}
@@ -145,13 +145,13 @@ section{padding:64px 20px}
 .prod-desc{font-size:11px;color:var(--silver);line-height:1.4;margin-bottom:8px}
 .prod-price{font-size:12px;color:var(--gold)}
 .promo{background:var(--dark);padding:48px 20px}
-.promo-inner{border:1px solid var(--border2);overflow:hidden;position:relative;display:grid;grid-template-columns:1fr;}
-.promo-img{width:100%;height:220px;object-fit:cover;object-position:center;filter:brightness(.45);position:absolute;inset:0;}
-.promo-content{position:relative;z-index:2;padding:32px 24px;background:linear-gradient(135deg,rgba(10,10,10,.95) 0%,rgba(10,10,10,.7) 100%);}
+.promo-inner{border:1px solid var(--border2);overflow:hidden;position:relative;}
+.promo-img{width:100%;height:240px;object-fit:cover;filter:brightness(.4);display:block;}
+.promo-content{padding:28px 24px;background:var(--dark);margin-top:-4px;}
 .promo-title{font-family:var(--font-d);font-size:clamp(22px,6vw,38px);color:var(--cream);margin:12px 0;font-weight:400;line-height:1.2}
 .promo-title em{font-style:italic;color:var(--gold2)}
-.promo-desc{font-size:13px;color:rgba(245,240,232,.7);line-height:1.7;margin-bottom:8px}
-.promo-note{font-size:11px;color:rgba(201,169,110,.6);margin-bottom:20px}
+.promo-desc{font-size:13px;color:var(--silver);line-height:1.7;margin-bottom:8px}
+.promo-note{font-size:11px;color:rgba(201,169,110,.55);margin-bottom:20px}
 .info-strip{background:var(--dark2);border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding:0 20px}
 .info-item{padding:28px 0;border-bottom:1px solid var(--border);text-align:center}
 .info-item:last-child{border-bottom:none}
@@ -160,11 +160,9 @@ section{padding:64px 20px}
 .info-desc{font-size:12px;color:var(--silver);line-height:1.6;margin-bottom:10px}
 .info-tags{display:flex;flex-wrap:wrap;gap:6px;justify-content:center}
 .info-tag{font-size:10px;padding:4px 10px;border:1px solid var(--border2);color:var(--silver)}
-/* ABOUT */
-.about{background:var(--dark);padding:64px 20px}
+.about{background:var(--dark)}
 .about-inner{display:flex;flex-direction:column;gap:28px}
-.about-img{width:100%;aspect-ratio:4/3;object-fit:cover;filter:brightness(.85)}
-.about-text .s-title{margin-bottom:16px}
+.about-img{width:100%;aspect-ratio:4/3;object-fit:cover;filter:brightness(.88)}
 .about-body{font-size:13px;color:var(--silver);line-height:1.85;margin-bottom:24px}
 .testimonials{background:var(--dark2)}
 .testi-grid{display:flex;flex-direction:column;gap:1px;background:var(--border);border:1px solid var(--border);margin-top:32px}
@@ -216,6 +214,9 @@ footer{background:var(--black);border-top:1px solid var(--border);padding:48px 2
   .footer-bottom{flex-direction:row;justify-content:space-between}
   .about-inner{flex-direction:row;align-items:center;gap:48px}
   .about-img{width:48%;aspect-ratio:3/4;flex-shrink:0}
+  .promo-inner{display:grid;grid-template-columns:1fr 1fr}
+  .promo-img{height:100%;min-height:280px}
+  .promo-content{background:var(--dark2);margin-top:0;padding:40px 32px}
 }
 @media(min-width:960px){
   .hero{padding:0 8% 80px}
@@ -230,10 +231,6 @@ footer{background:var(--black);border-top:1px solid var(--border);padding:48px 2
   .cat-name{font-size:28px}
   .cat-card:first-child .cat-name{font-size:40px}
   .prod-grid{grid-template-columns:repeat(4,1fr)}
-  .promo-inner{grid-template-columns:1fr 1fr;min-height:320px}
-  .promo-img{position:relative;width:100%;height:100%;inset:auto}
-  .promo-content{background:none;padding:48px}
-  .promo-inner::before{content:'';position:absolute;inset:0;background:linear-gradient(to right,rgba(10,10,10,.98) 40%,rgba(10,10,10,.2) 100%);z-index:1;pointer-events:none}
   .footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:48px}
   .footer-col{margin-bottom:0}
   .testi-grid{flex-direction:row}
@@ -362,13 +359,13 @@ footer{background:var(--black);border-top:1px solid var(--border);padding:48px 2
 
 <section class="promo" id="promo">
   <div class="promo-inner reveal">
-    <img class="promo-img" src="https://drive.google.com/thumbnail?id=1o7qotkTstEsBdK0_V6cfGqfnNkinrFyd&sz=w800" alt="Promo" loading="lazy">
+    <img class="promo-img" src="https://drive.google.com/thumbnail?id=1o7qotkTstEsBdK0_V6cfGqfnNkinrFyd&sz=w800" alt="Promo Deluxe" loading="lazy">
     <div class="promo-content">
       <div class="s-eyebrow"><div class="eyebrow-line"></div><span class="eyebrow-text">Promo Spesial</span></div>
       <div class="promo-title">Free Ongkir untuk<br><em>Area Tertentu</em></div>
       <div class="promo-desc">Nikmati gratis ongkos kirim untuk pembelian ke area-area pilihan. Hubungi kami via WhatsApp untuk mengecek area Anda.</div>
       <div class="promo-note">* COD tersedia untuk area Bogor Selatan. Syarat & ketentuan berlaku.</div>
-      <a href="https://wa.me/6283835540864" class="btn-gold" target="_blank" style="display:inline-flex;margin-top:4px">Cek Area Saya →</a>
+      <a href="https://wa.me/6283835540864" class="btn-gold" target="_blank" style="display:inline-flex">Cek Area Saya →</a>
     </div>
   </div>
 </section>
@@ -377,19 +374,19 @@ footer{background:var(--black);border-top:1px solid var(--border);padding:48px 2
   <div class="info-item">
     <span class="info-icon">💳</span>
     <div class="info-title">Metode Pembayaran</div>
-    <div class="info-desc">Berbagai pilihan untuk kemudahan transaksi Anda</div>
+    <div class="info-desc">Berbagai pilihan untuk kemudahan transaksi</div>
     <div class="info-tags"><span class="info-tag">QRIS</span><span class="info-tag">Dana</span><span class="info-tag">OVO</span><span class="info-tag">GoPay</span><span class="info-tag">ShopeePay</span><span class="info-tag">COD</span></div>
   </div>
   <div class="info-item">
     <span class="info-icon">📦</span>
     <div class="info-title">Pengiriman</div>
-    <div class="info-desc">Ekspedisi terpercaya dan ambil langsung di tempat</div>
+    <div class="info-desc">Ekspedisi terpercaya dan ambil di tempat</div>
     <div class="info-tags"><span class="info-tag">Ambil di Tempat</span><span class="info-tag">JNE</span><span class="info-tag">J&amp;T</span><span class="info-tag">SiCepat</span></div>
   </div>
   <div class="info-item">
     <span class="info-icon">✦</span>
     <div class="info-title">Kualitas Premium</div>
-    <div class="info-desc">Label holographic eksklusif, aroma tahan lama sepanjang hari</div>
+    <div class="info-desc">Label holographic eksklusif, aroma tahan lama</div>
     <div class="info-tags"><span class="info-tag">EDP Premium</span><span class="info-tag">Long Lasting</span><span class="info-tag">Holographic</span></div>
   </div>
 </div>
@@ -482,48 +479,32 @@ footer{background:var(--black);border-top:1px solid var(--border);padding:48px 2
 
 const WA="6283835540864";
 const PRICE_30=35000,PRICE_60=60000;
-const IMAGE_MAP={
-  "IMG1":"https://drive.google.com/thumbnail?id=10ROasv7nHmF1HB-IfY-AeOgl52ZM0-gh&sz=w800",
-  "IMG2":"https://drive.google.com/thumbnail?id=1Gee_cZpaNDf3HrlsOdLHT5dalxXumApd&sz=w800",
-  "IMG3":"https://drive.google.com/thumbnail?id=1OF8RWpcQyYhd2x2URUP9QpiYnxcI9x7n&sz=w800",
-  "IMG4":"https://drive.google.com/thumbnail?id=1QE2zxZR2cGuIH6-Plh9EJmdS1395sN89&sz=w800",
-  "IMG5":"https://drive.google.com/thumbnail?id=1ZLqQRfCoaPJbsMPxvr8kTS1qDgAi1xJY&sz=w800",
-  "IMG6":"https://drive.google.com/thumbnail?id=1_zAOPvVnbFyPqxYFeel8PesExVMg0mdQ&sz=w800",
-  "IMG7":"https://drive.google.com/thumbnail?id=1cpXNKivNyG5NW8mjiPnqw-AVTXaMQYW5&sz=w800",
-  "IMG8":"https://drive.google.com/thumbnail?id=1dLDsT5G9n2_Rc9wjfSiOz9cQa0CkJQ6G&sz=w800",
-  "IMG9":"https://drive.google.com/thumbnail?id=1hAMy2BQmJ3tKsnarOKkV38k66iMI13-1&sz=w800",
-  "IMG10":"https://drive.google.com/thumbnail?id=1juedfJWGpte4KJDGbKkL5-k-hszNPADq&sz=w800",
-  "IMG11":"https://drive.google.com/thumbnail?id=1o7qotkTstEsBdK0_V6cfGqfnNkinrFyd&sz=w800",
-  "IMG12":"https://drive.google.com/thumbnail?id=1pKocdDl3PTtc_HE7RQElq0oDZ2UKqLzr&sz=w800",
-  "IMG13":"https://drive.google.com/thumbnail?id=1z4v6jtNYjgSq3TCXV4xa0OzK5Tc-UTSU&sz=w800",
-  "IMG14":"https://drive.google.com/thumbnail?id=10ROasv7nHmF1HB-IfY-AeOgl52ZM0-gh&sz=w800",
-};
 const PRODUCTS=[
-  {id:1, name:"Aqua Kiss",        desc:"Segar, aquatic, ringan seperti air laut",        cat:"fresh",    badge:"",     imgs:["IMG3","IMG7","IMG11"]},
-  {id:2, name:"Avril",            desc:"Manis lembut dengan sentuhan floral ringan",     cat:"floral",   badge:"",     imgs:["IMG13","IMG2","IMG11"]},
-  {id:3, name:"Balqis",           desc:"Manis elegan dengan nuansa oriental",            cat:"oriental", badge:"",     imgs:["IMG5","IMG6","IMG9"]},
-  {id:4, name:"Buqiah",           desc:"Hangat, sedikit manis dan khas arabian",         cat:"oriental", badge:"",     imgs:["IMG6","IMG5","IMG12"]},
-  {id:5, name:"Baccarat",         desc:"Manis elegan, sedikit woody dan mewah",          cat:"oriental", badge:"best", imgs:["IMG8","IMG4","IMG10"]},
-  {id:6, name:"Bulgari Aqua",     desc:"Segar laut, clean dan maskulin",                cat:"fresh",    badge:"best", imgs:["IMG4","IMG7","IMG3"]},
-  {id:7, name:"Bulgari Extreme",  desc:"Citrus segar dengan kesan kuat dan maskulin",   cat:"fresh",    badge:"",     imgs:["IMG7","IMG3","IMG11"]},
-  {id:8, name:"Bubble Gum",       desc:"Manis permen, playful dan ceria",               cat:"gourmand", badge:"",     imgs:["IMG2","IMG13","IMG1"]},
-  {id:9, name:"Black Opium",      desc:"Manis hangat, sedikit kopi dan vanilla",        cat:"oriental", badge:"",     imgs:["IMG5","IMG8","IMG6"]},
-  {id:10,name:"Dior Sauvage",     desc:"Fresh spicy, maskulin dan elegan",              cat:"fresh",    badge:"",     imgs:["IMG3","IMG4","IMG7"]},
-  {id:11,name:"Dunhill Blue",     desc:"Segar, ringan, cocok untuk harian",             cat:"fresh",    badge:"",     imgs:["IMG4","IMG3","IMG11"]},
-  {id:12,name:"Escada Moon",      desc:"Fruity manis, segar dan youthful",              cat:"gourmand", badge:"",     imgs:["IMG13","IMG2","IMG11"]},
-  {id:13,name:"Grey",             desc:"Clean, kalem dan netral",                       cat:"unisex",   badge:"",     imgs:["IMG11","IMG13","IMG3"]},
-  {id:14,name:"Gastby",           desc:"Segar maskulin dengan sentuhan sporty",         cat:"fresh",    badge:"",     imgs:["IMG7","IMG4","IMG3"]},
-  {id:15,name:"Giv",              desc:"Elegan, ringan dengan nuansa floral fresh",     cat:"floral",   badge:"",     imgs:["IMG2","IMG13","IMG1"]},
-  {id:16,name:"Jay Rose",         desc:"Mawar manis, lembut dan feminin",               cat:"floral",   badge:"",     imgs:["IMG13","IMG2","IMG11"]},
-  {id:17,name:"Manggo",           desc:"Buah mangga manis segar, tropis",               cat:"gourmand", badge:"",     imgs:["IMG1","IMG11","IMG2"]},
-  {id:18,name:"Nagita",           desc:"Manis soft, elegan dan feminin",                cat:"floral",   badge:"",     imgs:["IMG11","IMG13","IMG2"]},
-  {id:19,name:"One Million",      desc:"Manis hangat, bold dan mewah",                  cat:"oriental", badge:"",     imgs:["IMG6","IMG5","IMG9"]},
-  {id:20,name:"Scandalous",       desc:"Manis kuat, sedikit sensual",                   cat:"oriental", badge:"",     imgs:["IMG9","IMG6","IMG5"]},
-  {id:21,name:"Vanilla Choco",    desc:"Coklat dan vanilla, manis hangat",              cat:"gourmand", badge:"",     imgs:["IMG10","IMG1","IMG12"]},
-  {id:22,name:"Vanilla Body Soft",desc:"Vanilla lembut, ringan dan nyaman",             cat:"gourmand", badge:"best", imgs:["IMG12","IMG10","IMG1"]},
-  {id:23,name:"Vanilla Ice",      desc:"Vanilla segar, manis tapi ringan",              cat:"gourmand", badge:"",     imgs:["IMG1","IMG12","IMG10"]},
-  {id:24,name:"Zwitsal",          desc:"Wangi bayi, lembut, bersih dan calming",       cat:"unisex",   badge:"",     imgs:["IMG11","IMG11","IMG13"]},
-  {id:25,name:"212 VIP Man",      desc:"Fresh manis, modern dan elegan",                cat:"fresh",    badge:"best", imgs:["IMG8","IMG4","IMG3"]},
+  {id:1,name:"Aqua Kiss",desc:"Segar, aquatic, ringan seperti air laut",cat:"fresh",badge:"",img:"https://websipp.github.io/Deluxe-web/images/AQUA_KISS.jpeg"},
+  {id:2,name:"Avril",desc:"Manis lembut dengan sentuhan floral ringan",cat:"floral",badge:"",img:"https://websipp.github.io/Deluxe-web/images/AVRIL.jpeg"},
+  {id:3,name:"Balqis",desc:"Manis elegan dengan nuansa oriental",cat:"oriental",badge:"",img:"https://websipp.github.io/Deluxe-web/images/BALQIS.jpeg"},
+  {id:4,name:"Buqiah",desc:"Hangat, sedikit manis dan khas arabian",cat:"oriental",badge:"",img:"https://drive.google.com/thumbnail?id=1OF8RWpcQyYhd2x2URUP9QpiYnxcI9x7n&sz=w800"},
+  {id:5,name:"Baccarat",desc:"Manis elegan, sedikit woody dan mewah",cat:"oriental",badge:"best",img:"https://websipp.github.io/Deluxe-web/images/BACCARAT.jpeg"},
+  {id:6,name:"Bulgari Aqua",desc:"Segar laut, clean dan maskulin",cat:"fresh",badge:"best",img:"https://websipp.github.io/Deluxe-web/images/BULGARI_AQUA.jpeg"},
+  {id:7,name:"Bulgari Extreme",desc:"Citrus segar dengan kesan kuat dan maskulin",cat:"fresh",badge:"",img:"https://drive.google.com/thumbnail?id=1OF8RWpcQyYhd2x2URUP9QpiYnxcI9x7n&sz=w800"},
+  {id:8,name:"Bubble Gum",desc:"Manis permen, playful dan ceria",cat:"gourmand",badge:"",img:"https://websipp.github.io/Deluxe-web/images/BUBBLE_GUM.jpeg"},
+  {id:9,name:"Black Opium",desc:"Manis hangat, sedikit kopi dan vanilla",cat:"oriental",badge:"",img:"https://drive.google.com/thumbnail?id=1OF8RWpcQyYhd2x2URUP9QpiYnxcI9x7n&sz=w800"},
+  {id:10,name:"Dior Sauvage",desc:"Fresh spicy, maskulin dan elegan",cat:"fresh",badge:"",img:"https://websipp.github.io/Deluxe-web/images/DIOR_SAUVAGE.jpeg"},
+  {id:11,name:"Dunhill Blue",desc:"Segar, ringan, cocok untuk harian",cat:"fresh",badge:"",img:"https://drive.google.com/thumbnail?id=1OF8RWpcQyYhd2x2URUP9QpiYnxcI9x7n&sz=w800"},
+  {id:12,name:"Escada Moon",desc:"Fruity manis, segar dan youthful",cat:"gourmand",badge:"",img:"https://drive.google.com/thumbnail?id=1OF8RWpcQyYhd2x2URUP9QpiYnxcI9x7n&sz=w800"},
+  {id:13,name:"Grey",desc:"Clean, kalem dan netral",cat:"unisex",badge:"",img:"https://websipp.github.io/Deluxe-web/images/GREY.jpeg"},
+  {id:14,name:"Gastby",desc:"Segar maskulin dengan sentuhan sporty",cat:"fresh",badge:"",img:"https://websipp.github.io/Deluxe-web/images/GATSBY.jpeg"},
+  {id:15,name:"Giv",desc:"Elegan, ringan dengan nuansa floral fresh",cat:"floral",badge:"",img:"https://websipp.github.io/Deluxe-web/images/GIV.jpeg"},
+  {id:16,name:"Jay Rose",desc:"Mawar manis, lembut dan feminin",cat:"floral",badge:"",img:"https://drive.google.com/thumbnail?id=1OF8RWpcQyYhd2x2URUP9QpiYnxcI9x7n&sz=w800"},
+  {id:17,name:"Manggo",desc:"Buah mangga manis segar, tropis",cat:"gourmand",badge:"",img:"https://websipp.github.io/Deluxe-web/images/MANG0.jpeg"},
+  {id:18,name:"Nagita",desc:"Manis soft, elegan dan feminin",cat:"floral",badge:"",img:"https://websipp.github.io/Deluxe-web/images/NAGITA.jpeg"},
+  {id:19,name:"One Million",desc:"Manis hangat, bold dan mewah",cat:"oriental",badge:"",img:"https://websipp.github.io/Deluxe-web/images/ONE_MILLION.jpeg"},
+  {id:20,name:"Scandalous",desc:"Manis kuat, sedikit sensual",cat:"oriental",badge:"",img:"https://websipp.github.io/Deluxe-web/images/SCANDALOUS.jpeg"},
+  {id:21,name:"Vanilla Choco",desc:"Coklat dan vanilla, manis hangat",cat:"gourmand",badge:"",img:"https://websipp.github.io/Deluxe-web/images/VANILLA_CHOCO.jpeg"},
+  {id:22,name:"Vanilla Body Soft",desc:"Vanilla lembut, ringan dan nyaman",cat:"gourmand",badge:"best",img:"https://websipp.github.io/Deluxe-web/images/VANILLA_BODY_SOFT.jpeg"},
+  {id:23,name:"Vanilla Ice",desc:"Vanilla segar, manis tapi ringan",cat:"gourmand",badge:"",img:"https://websipp.github.io/Deluxe-web/images/VANILLA_ICE.jpeg"},
+  {id:24,name:"Zwitsal",desc:"Wangi bayi, lembut, bersih dan calming",cat:"unisex",badge:"",img:"https://websipp.github.io/Deluxe-web/images/ZWITSAL.jpeg"},
+  {id:25,name:"212 VIP Man",desc:"Fresh manis, modern dan elegan",cat:"fresh",badge:"best",img:"https://websipp.github.io/Deluxe-web/images/212_VIP_MAN.jpeg"},
 ];
 const FAQS=[
   {q:"Berapa lama ketahanan aromanya?",a:"Umumnya 4–8 jam di kulit, tergantung varian dan cara pemakaian. Varian Eau de Parfum standar bisa 6–8 jam, sedangkan varian Premium bisa mencapai 8–12 jam atau lebih."},
@@ -549,51 +530,57 @@ function addToCart(id,e,size=30){
   if(b){b.textContent=cartCount();b.classList.add("bump");setTimeout(()=>b.classList.remove("bump"),300);}
 }
 function toggleMenu(){
-  document.getElementById('hamburger').classList.toggle('open');
-  document.getElementById('mobileMenu').classList.toggle('open');
-  document.body.style.overflow=document.getElementById('mobileMenu').classList.contains('open')?'hidden':'';
+  const hb=document.getElementById('hamburger'),mm=document.getElementById('mobileMenu');
+  if(!hb||!mm)return;
+  hb.classList.toggle('open');mm.classList.toggle('open');
+  document.body.style.overflow=mm.classList.contains('open')?'hidden':'';
 }
 function closeMenu(){
-  document.getElementById('hamburger').classList.remove('open');
-  document.getElementById('mobileMenu').classList.remove('open');
+  const hb=document.getElementById('hamburger'),mm=document.getElementById('mobileMenu');
+  if(hb)hb.classList.remove('open');
+  if(mm)mm.classList.remove('open');
   document.body.style.overflow='';
 }
 function toggleCart(){
-  document.getElementById('overlay').classList.toggle('open');
-  document.getElementById('cartDrawer').classList.toggle('open');
-  if(document.getElementById('cartDrawer').classList.contains('open')){document.body.style.overflow='hidden';renderCart();}
+  const ov=document.getElementById('overlay'),cd=document.getElementById('cartDrawer');
+  if(!ov||!cd)return;
+  ov.classList.toggle('open');cd.classList.toggle('open');
+  if(cd.classList.contains('open')){document.body.style.overflow='hidden';renderCart();}
   else{document.body.style.overflow='';}
 }
 function renderCart(){
   const cart=getCart(),keys=Object.keys(cart);
   const items=document.getElementById('cartItems'),foot=document.getElementById('cartFoot');
   updateBadge();
-  if(!keys.length){items.innerHTML='<div class="cart-empty">Keranjang masih kosong ✦</div>';foot.style.display='none';return;}
-  foot.style.display='block';let total=0;
-  items.innerHTML=keys.map(key=>{
+  if(!keys.length){
+    if(items)items.innerHTML='<div class="cart-empty">Keranjang masih kosong ✦</div>';
+    if(foot)foot.style.display='none';return;
+  }
+  if(foot)foot.style.display='block';
+  let total=0;
+  if(items)items.innerHTML=keys.map(key=>{
     const[pid,size]=key.split('_');const p=PRODUCTS.find(x=>x.id==pid);if(!p)return'';
     const unit=parseInt(size)===30?PRICE_30:PRICE_60;const sub=unit*cart[key];total+=sub;
-    return`<div class="cart-item"><img class="c-img" src="${IMAGE_MAP[p.imgs[0]]}" alt="${p.name}">
+    return`<div class="cart-item"><img class="c-img" src="${p.img}" alt="${p.name}">
     <div class="c-info"><div class="c-name">${p.name}</div><div class="c-note">${size}ml</div>
     <div class="c-row"><div class="c-price">${formatRp(sub)}</div>
     <div class="qty-ctrl"><button class="qty-btn" onclick="cQty('${key}',-1)">−</button><span class="qty-num">${cart[key]}</span><button class="qty-btn" onclick="cQty('${key}',1)">+</button></div>
     </div></div></div>`;
   }).join('');
-  document.getElementById('cartTotal').textContent=formatRp(total);
+  const ct=document.getElementById('cartTotal');if(ct)ct.textContent=formatRp(total);
 }
 function cQty(key,d){const c=getCart();c[key]=(c[key]||0)+d;if(c[key]<=0)delete c[key];saveCart(c);renderCart();}
 function goCheckout(){document.body.style.overflow='';window.location.href='checkout.html';}
 
 const PRODUCT_PLACEHOLDER="https://drive.google.com/thumbnail?id=1OF8RWpcQyYhd2x2URUP9QpiYnxcI9x7n&sz=w800";
 function renderProducts(filter='all'){
-  const grid=document.getElementById('prodGrid');
+  const grid=document.getElementById('prodGrid');if(!grid)return;
   const list=filter==='all'?PRODUCTS:PRODUCTS.filter(p=>p.cat===filter);
   if(!list.length){grid.innerHTML='<div style="padding:48px;color:var(--silver);text-align:center;grid-column:1/-1;font-family:var(--font-d);font-style:italic;font-size:18px">Belum ada produk di kategori ini</div>';return;}
-  grid.innerHTML=list.map(p=>{
-    const imgSrc=IMAGE_MAP[p.imgs[0]]||PRODUCT_PLACEHOLDER;
-    return`<div class="prod-card" onclick="location.href='product.html?id=${p.id}'">
+  grid.innerHTML=list.map(p=>`
+    <div class="prod-card" onclick="location.href='product.html?id=${p.id}'">
       <div class="prod-img">
-        <img src="${imgSrc}" alt="${p.name}" loading="lazy">
+        <img src="${p.img||PRODUCT_PLACEHOLDER}" alt="${p.name}" loading="lazy">
         ${p.badge==='best'?'<span class="prod-badge">Best Seller</span>':''}
         <button class="prod-add-btn" onclick="addToCart(${p.id},event)" aria-label="Tambah">+</button>
       </div>
@@ -602,8 +589,7 @@ function renderProducts(filter='all'){
         <div class="prod-desc">${p.desc}</div>
         <div class="prod-price">${formatRp(PRICE_30)} / 30ml</div>
       </div>
-    </div>`;
-  }).join('');
+    </div>`).join('');
 }
 function filterProducts(cat,btn){
   renderProducts(cat);
@@ -629,25 +615,6 @@ function renderFAQ(){
       </div>
       <div class="faq-a">${f.a}</div>
     </div>`).join('');
-}
-function toggleCart(){
-  const ov=document.getElementById('overlay'),cd=document.getElementById('cartDrawer');
-  if(!ov||!cd)return;
-  ov.classList.toggle('open');cd.classList.toggle('open');
-  if(cd.classList.contains('open')){document.body.style.overflow='hidden';renderCart();}
-  else{document.body.style.overflow='';}
-}
-function toggleMenu(){
-  const hb=document.getElementById('hamburger'),mm=document.getElementById('mobileMenu');
-  if(!hb||!mm)return;
-  hb.classList.toggle('open');mm.classList.toggle('open');
-  document.body.style.overflow=mm.classList.contains('open')?'hidden':'';
-}
-function closeMenu(){
-  const hb=document.getElementById('hamburger'),mm=document.getElementById('mobileMenu');
-  if(hb)hb.classList.remove('open');
-  if(mm)mm.classList.remove('open');
-  document.body.style.overflow='';
 }
 renderProducts();renderTesti();renderFAQ();updateBadge();
 window.addEventListener('load',()=>{
