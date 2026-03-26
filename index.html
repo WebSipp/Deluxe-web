@@ -135,23 +135,34 @@ section{padding:64px 20px}
 .filter-tab.active{background:var(--gold);color:var(--black);font-weight:500}
 .prod-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1px;background:var(--border);border:1px solid var(--border);margin-top:20px;}
 .prod-card{background:var(--dark2);cursor:pointer;-webkit-tap-highlight-color:transparent;}
-.prod-img{aspect-ratio:3/4;overflow:hidden;position:relative;background:var(--dark)}
-.prod-img img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .4s;filter:brightness(.9);}
+.prod-img{aspect-ratio:1/1;overflow:hidden;position:relative;background:var(--dark)}
+.prod-img img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .4s;filter:brightness(.92);}
 .prod-card:hover .prod-img img{transform:scale(1.04);filter:brightness(1)}
 .prod-badge{position:absolute;top:8px;left:8px;padding:3px 8px;font-size:9px;font-weight:500;letter-spacing:.1em;text-transform:uppercase;background:var(--gold);color:var(--black)}
-.prod-add-btn{position:absolute;bottom:8px;right:8px;width:36px;height:36px;border:none;background:var(--gold);color:var(--black);font-size:20px;font-weight:300;display:flex;align-items:center;justify-content:center;cursor:pointer;-webkit-tap-highlight-color:transparent;}
-.prod-body{padding:12px}
+/* HARGA CARD — coret style */
+.prod-body{padding:12px 12px 14px}
 .prod-name{font-family:var(--font-d);font-size:15px;color:var(--cream);font-weight:400;margin-bottom:3px;line-height:1.2}
-.prod-desc{font-size:11px;color:var(--silver);line-height:1.4;margin-bottom:8px}
-.prod-price{font-size:12px;color:var(--gold)}
+.prod-desc{font-size:11px;color:var(--silver);line-height:1.4;margin-bottom:10px}
+.prod-price-wrap{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.prod-price-old{font-size:11px;color:var(--silver);text-decoration:line-through;opacity:.6}
+.prod-price-new{font-size:13px;color:var(--gold);font-weight:500}
+.prod-price-prem{font-size:11px;color:rgba(201,169,110,.55);margin-top:2px}
+/* PROMO */
 .promo{background:var(--dark);padding:48px 20px}
 .promo-inner{border:1px solid var(--border2);overflow:hidden;position:relative;}
-.promo-img{width:100%;height:240px;object-fit:cover;filter:brightness(.4);display:block;}
-.promo-content{padding:28px 24px;background:var(--dark);margin-top:-4px;}
-.promo-title{font-family:var(--font-d);font-size:clamp(22px,6vw,38px);color:var(--cream);margin:12px 0;font-weight:400;line-height:1.2}
+.promo-img{width:100%;height:220px;object-fit:cover;filter:brightness(.4);display:block;}
+.promo-content{padding:28px 24px;background:var(--dark);}
+.promo-title{font-family:var(--font-d);font-size:clamp(22px,6vw,36px);color:var(--cream);margin:12px 0;font-weight:400;line-height:1.2}
 .promo-title em{font-style:italic;color:var(--gold2)}
 .promo-desc{font-size:13px;color:var(--silver);line-height:1.7;margin-bottom:8px}
 .promo-note{font-size:11px;color:rgba(201,169,110,.55);margin-bottom:20px}
+/* PROMO PILLS */
+.promo-pills{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:20px}
+.promo-pill{display:flex;align-items:center;gap:8px;padding:10px 16px;border:1px solid var(--border2);}
+.pill-icon{font-size:16px}
+.pill-text{font-size:11px;color:var(--cream);line-height:1.4}
+.pill-text strong{color:var(--gold);display:block;font-size:13px;font-family:var(--font-d)}
+/* INFO STRIP */
 .info-strip{background:var(--dark2);border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding:0 20px}
 .info-item{padding:28px 0;border-bottom:1px solid var(--border);text-align:center}
 .info-item:last-child{border-bottom:none}
@@ -160,10 +171,12 @@ section{padding:64px 20px}
 .info-desc{font-size:12px;color:var(--silver);line-height:1.6;margin-bottom:10px}
 .info-tags{display:flex;flex-wrap:wrap;gap:6px;justify-content:center}
 .info-tag{font-size:10px;padding:4px 10px;border:1px solid var(--border2);color:var(--silver)}
+/* ABOUT */
 .about{background:var(--dark)}
 .about-inner{display:flex;flex-direction:column;gap:28px}
 .about-img{width:100%;aspect-ratio:4/3;object-fit:cover;filter:brightness(.88)}
 .about-body{font-size:13px;color:var(--silver);line-height:1.85;margin-bottom:24px}
+/* TESTIMONIALS */
 .testimonials{background:var(--dark2)}
 .testi-grid{display:flex;flex-direction:column;gap:1px;background:var(--border);border:1px solid var(--border);margin-top:32px}
 .testi-card{background:var(--dark2);padding:24px 20px}
@@ -171,6 +184,7 @@ section{padding:64px 20px}
 .testi-text{font-family:var(--font-d);font-size:17px;color:var(--cream);line-height:1.6;font-style:italic;margin-bottom:14px}
 .testi-author{font-size:11px;color:var(--silver);letter-spacing:.08em;text-transform:uppercase}
 .testi-product{font-size:11px;color:var(--gold);margin-top:3px}
+/* FAQ */
 .faq{background:var(--dark)}
 .faq-list{margin-top:32px;border-top:1px solid var(--border)}
 .faq-item{border-bottom:1px solid var(--border)}
@@ -179,6 +193,7 @@ section{padding:64px 20px}
 .faq-item.open .faq-icon{transform:rotate(45deg);background:var(--gold);color:var(--black);border-color:var(--gold)}
 .faq-a{max-height:0;overflow:hidden;font-size:13px;color:var(--silver);line-height:1.8;transition:max-height .35s ease,padding .25s}
 .faq-item.open .faq-a{max-height:300px;padding-bottom:18px}
+/* FOOTER */
 footer{background:var(--black);border-top:1px solid var(--border);padding:48px 20px 32px}
 .footer-logo{margin-bottom:14px;color:var(--cream);opacity:.8}
 .footer-logo svg{height:36px;width:auto}
@@ -216,7 +231,7 @@ footer{background:var(--black);border-top:1px solid var(--border);padding:48px 2
   .about-img{width:48%;aspect-ratio:3/4;flex-shrink:0}
   .promo-inner{display:grid;grid-template-columns:1fr 1fr}
   .promo-img{height:100%;min-height:280px}
-  .promo-content{background:var(--dark2);margin-top:0;padding:40px 32px}
+  .promo-content{background:var(--dark2);padding:40px 32px}
 }
 @media(min-width:960px){
   .hero{padding:0 8% 80px}
@@ -236,11 +251,13 @@ footer{background:var(--black);border-top:1px solid var(--border);padding:48px 2
   .testi-grid{flex-direction:row}
   .about-inner{gap:80px}
   .about-img{width:44%;aspect-ratio:3/4}
+  .promo-pills{flex-direction:row}
+  .promo-pill{flex:1}
 }
 </style>
 </head>
 <body>
-<nav>
+<nav id="navbar">
   <a href="index.html" class="nav-logo"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 220 64" aria-label="Deluxe Parfume">
   <text x="4" y="44" font-family="Palatino Linotype,Palatino,Book Antiqua,Georgia,serif" font-size="48" font-style="italic" font-weight="400" fill="currentColor" letter-spacing="-1">Deluxe</text>
   <text x="7" y="60" font-family="Georgia,serif" font-size="9" font-weight="400" fill="currentColor" letter-spacing="5.5">EAU DE PARFUME</text>
@@ -249,7 +266,7 @@ footer{background:var(--black);border-top:1px solid var(--border);padding:48px 2
     <li><a href="index.html#categories">Koleksi</a></li>
     <li><a href="index.html#products">Produk</a></li>
     <li><a href="index.html#promo">Promo</a></li>
-    <li><a href="index.html#testimonials">Testimoni</a></li>
+    <li><a href="index.html#about">Tentang Kami</a></li>
     <li><a href="index.html#faq">FAQ</a></li>
   </ul>
   <div class="nav-right">
@@ -261,10 +278,12 @@ footer{background:var(--black);border-top:1px solid var(--border);padding:48px 2
   <a href="index.html#categories" onclick="closeMenu()">Koleksi</a>
   <a href="index.html#products" onclick="closeMenu()">Produk</a>
   <a href="index.html#promo" onclick="closeMenu()">Promo</a>
-  <a href="index.html#testimonials" onclick="closeMenu()">Testimoni</a>
+  <a href="index.html#about" onclick="closeMenu()">Tentang Kami</a>
   <a href="index.html#faq" onclick="closeMenu()">FAQ</a>
   <div class="mm-divider"></div>
-  <a href="https://wa.me/6283835540864" class="mm-wa" target="_blank" onclick="closeMenu()"><svg width="18" height="18" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg> Chat WhatsApp</a>
+  <a href="https://wa.me/6283835540864" class="mm-wa" target="_blank" onclick="closeMenu()">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg> Chat WhatsApp
+  </a>
 </div>
 
 <section class="hero" id="hero">
@@ -286,17 +305,19 @@ footer{background:var(--black);border-top:1px solid var(--border);padding:48px 2
     <div class="m-item">Eau de Parfume<span class="m-dot"></span></div>
     <div class="m-item">25 Varian<span class="m-dot"></span></div>
     <div class="m-item">Bogor Selatan<span class="m-dot"></span></div>
+    <div class="m-item">Regular Rp 35.000<span class="m-dot"></span></div>
+    <div class="m-item">Premium Rp 60.000<span class="m-dot"></span></div>
     <div class="m-item">Free Ongkir Area Tertentu<span class="m-dot"></span></div>
-    <div class="m-item">QRIS · Dana · OVO · GoPay<span class="m-dot"></span></div>
     <div class="m-item">COD Tersedia<span class="m-dot"></span></div>
-    <div class="m-item">Packaging Elegan<span class="m-dot"></span></div>
+    <div class="m-item">Packaging Holographic<span class="m-dot"></span></div>
     <div class="m-item">Eau de Parfume<span class="m-dot"></span></div>
     <div class="m-item">25 Varian<span class="m-dot"></span></div>
     <div class="m-item">Bogor Selatan<span class="m-dot"></span></div>
+    <div class="m-item">Regular Rp 35.000<span class="m-dot"></span></div>
+    <div class="m-item">Premium Rp 60.000<span class="m-dot"></span></div>
     <div class="m-item">Free Ongkir Area Tertentu<span class="m-dot"></span></div>
-    <div class="m-item">QRIS · Dana · OVO · GoPay<span class="m-dot"></span></div>
     <div class="m-item">COD Tersedia<span class="m-dot"></span></div>
-    <div class="m-item">Packaging Elegan<span class="m-dot"></span></div>
+    <div class="m-item">Packaging Holographic<span class="m-dot"></span></div>
   </div>
 </div>
 
@@ -361,11 +382,24 @@ footer{background:var(--black);border-top:1px solid var(--border);padding:48px 2
   <div class="promo-inner reveal">
     <img class="promo-img" src="https://drive.google.com/thumbnail?id=1o7qotkTstEsBdK0_V6cfGqfnNkinrFyd&sz=w800" alt="Promo Deluxe" loading="lazy">
     <div class="promo-content">
-      <div class="s-eyebrow"><div class="eyebrow-line"></div><span class="eyebrow-text">Promo Spesial</span></div>
-      <div class="promo-title">Free Ongkir untuk<br><em>Area Tertentu</em></div>
-      <div class="promo-desc">Nikmati gratis ongkos kirim untuk pembelian ke area-area pilihan. Hubungi kami via WhatsApp untuk mengecek area Anda.</div>
-      <div class="promo-note">* COD tersedia untuk area Bogor Selatan. Syarat & ketentuan berlaku.</div>
-      <a href="https://wa.me/6283835540864" class="btn-gold" target="_blank" style="display:inline-flex">Cek Area Saya →</a>
+      <div class="s-eyebrow"><div class="eyebrow-line"></div><span class="eyebrow-text">Promo & Diskon</span></div>
+      <div class="promo-title">Hemat Lebih,<br><em>Wangi Lebih Lama</em></div>
+      <div class="promo-pills">
+        <div class="promo-pill">
+          <span class="pill-icon">🏷️</span>
+          <div class="pill-text"><strong>Rp 35.000</strong>Harga spesial Regular<br><span style="text-decoration:line-through;opacity:.5;font-size:10px">Rp 40.000</span></div>
+        </div>
+        <div class="promo-pill">
+          <span class="pill-icon">🎉</span>
+          <div class="pill-text"><strong>Diskon 10%</strong>Promo Hari Raya & momen spesial</div>
+        </div>
+        <div class="promo-pill">
+          <span class="pill-icon">🚚</span>
+          <div class="pill-text"><strong>Free Ongkir</strong>Untuk area tertentu</div>
+        </div>
+      </div>
+      <div class="promo-note">* Promo hari raya berlaku di waktu tertentu. Hubungi kami untuk info lebih lanjut.</div>
+      <a href="https://wa.me/6283835540864" class="btn-gold" target="_blank" style="display:inline-flex">Tanya Promo →</a>
     </div>
   </div>
 </section>
@@ -387,7 +421,7 @@ footer{background:var(--black);border-top:1px solid var(--border);padding:48px 2
     <span class="info-icon">✦</span>
     <div class="info-title">Kualitas Premium</div>
     <div class="info-desc">Label holographic eksklusif, aroma tahan lama</div>
-    <div class="info-tags"><span class="info-tag">EDP Premium</span><span class="info-tag">Long Lasting</span><span class="info-tag">Holographic</span></div>
+    <div class="info-tags"><span class="info-tag">Regular 30ml</span><span class="info-tag">Premium 30ml</span><span class="info-tag">Holographic</span></div>
   </div>
 </div>
 
@@ -397,7 +431,7 @@ footer{background:var(--black);border-top:1px solid var(--border);padding:48px 2
     <div class="about-text">
       <div class="s-eyebrow"><div class="eyebrow-line"></div><span class="eyebrow-text">Tentang Kami</span></div>
       <h2 class="s-title">Parfum Premium<br><em>untuk Semua</em></h2>
-      <p class="about-body">Deluxe Parfume hadir untuk masyarakat yang menginginkan wewangian premium dengan harga terjangkau. Kami menghadirkan aroma yang tahan lama, kuat, dan berkesan — dikemas dalam botol elegan dengan label holographic eksklusif yang mencerminkan identitas Anda.<br><br>Berlokasi di Bogor Selatan, kami melayani pemesanan dari seluruh Indonesia melalui berbagai ekspedisi terpercaya.</p>
+      <p class="about-body">Deluxe Parfume hadir untuk masyarakat yang menginginkan wewangian premium dengan harga terjangkau. Kami menghadirkan aroma yang tahan lama, kuat, dan berkesan — dikemas dalam botol elegan dengan label holographic eksklusif.<br><br>Tersedia dua pilihan varian: <strong style="color:var(--cream)">Regular</strong> untuk pemakaian harian yang segar dan menyenangkan, dan <strong style="color:var(--gold)">Premium</strong> dengan racikan khusus untuk aroma yang lebih kuat dan tahan lama sepanjang hari.</p>
       <a href="https://wa.me/6283835540864" class="btn-gold" target="_blank" style="display:inline-flex">Hubungi Kami →</a>
     </div>
   </div>
@@ -420,7 +454,7 @@ footer{background:var(--black);border-top:1px solid var(--border);padding:48px 2
 </section>
 
 <footer>
-  <div class="footer-grid" id="footerGrid">
+  <div class="footer-grid">
     <div class="footer-col">
       <div class="footer-logo"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 220 64" aria-label="Deluxe Parfume">
   <text x="4" y="44" font-family="Palatino Linotype,Palatino,Book Antiqua,Georgia,serif" font-size="48" font-style="italic" font-weight="400" fill="currentColor" letter-spacing="-1">Deluxe</text>
@@ -478,24 +512,24 @@ footer{background:var(--black);border-top:1px solid var(--border);padding:48px 2
 <script>
 
 const WA="6283835540864";
-const PRICE_30=35000,PRICE_60=60000;
+const PRICE_REG=35000, PRICE_REG_ORIGINAL=40000, PRICE_PREM=60000;
 const PRODUCTS=[
   {id:1,name:"Aqua Kiss",desc:"Segar, aquatic, ringan seperti air laut",cat:"fresh",badge:"",img:"https://websipp.github.io/Deluxe-web/images/AQUA_KISS.jpeg"},
   {id:2,name:"Avril",desc:"Manis lembut dengan sentuhan floral ringan",cat:"floral",badge:"",img:"https://websipp.github.io/Deluxe-web/images/AVRIL.jpeg"},
   {id:3,name:"Balqis",desc:"Manis elegan dengan nuansa oriental",cat:"oriental",badge:"",img:"https://websipp.github.io/Deluxe-web/images/BALQIS.jpeg"},
-  {id:4,name:"Buqiah",desc:"Hangat, sedikit manis dan khas arabian",cat:"oriental",badge:"",img:"https://drive.google.com/thumbnail?id=1OF8RWpcQyYhd2x2URUP9QpiYnxcI9x7n&sz=w800"},
+  {id:4,name:"Buqiah",desc:"Hangat, sedikit manis dan khas arabian",cat:"oriental",badge:"",img:"https://websipp.github.io/Deluxe-web/images/BUQIAH.jpeg"},
   {id:5,name:"Baccarat",desc:"Manis elegan, sedikit woody dan mewah",cat:"oriental",badge:"best",img:"https://websipp.github.io/Deluxe-web/images/BACCARAT.jpeg"},
   {id:6,name:"Bulgari Aqua",desc:"Segar laut, clean dan maskulin",cat:"fresh",badge:"best",img:"https://websipp.github.io/Deluxe-web/images/BULGARI_AQUA.jpeg"},
-  {id:7,name:"Bulgari Extreme",desc:"Citrus segar dengan kesan kuat dan maskulin",cat:"fresh",badge:"",img:"https://drive.google.com/thumbnail?id=1OF8RWpcQyYhd2x2URUP9QpiYnxcI9x7n&sz=w800"},
+  {id:7,name:"Bulgari Extreme",desc:"Citrus segar dengan kesan kuat dan maskulin",cat:"fresh",badge:"",img:"https://websipp.github.io/Deluxe-web/images/BULGARI_EXTREME.jpeg"},
   {id:8,name:"Bubble Gum",desc:"Manis permen, playful dan ceria",cat:"gourmand",badge:"",img:"https://websipp.github.io/Deluxe-web/images/BUBBLE_GUM.jpeg"},
-  {id:9,name:"Black Opium",desc:"Manis hangat, sedikit kopi dan vanilla",cat:"oriental",badge:"",img:"https://drive.google.com/thumbnail?id=1OF8RWpcQyYhd2x2URUP9QpiYnxcI9x7n&sz=w800"},
+  {id:9,name:"Black Opium",desc:"Manis hangat, sedikit kopi dan vanilla",cat:"oriental",badge:"",img:"https://websipp.github.io/Deluxe-web/images/BLACK_OPIUM.jpeg"},
   {id:10,name:"Dior Sauvage",desc:"Fresh spicy, maskulin dan elegan",cat:"fresh",badge:"",img:"https://websipp.github.io/Deluxe-web/images/DIOR_SAUVAGE.jpeg"},
-  {id:11,name:"Dunhill Blue",desc:"Segar, ringan, cocok untuk harian",cat:"fresh",badge:"",img:"https://drive.google.com/thumbnail?id=1OF8RWpcQyYhd2x2URUP9QpiYnxcI9x7n&sz=w800"},
-  {id:12,name:"Escada Moon",desc:"Fruity manis, segar dan youthful",cat:"gourmand",badge:"",img:"https://drive.google.com/thumbnail?id=1OF8RWpcQyYhd2x2URUP9QpiYnxcI9x7n&sz=w800"},
+  {id:11,name:"Dunhill Blue",desc:"Segar, ringan, cocok untuk harian",cat:"fresh",badge:"",img:"https://websipp.github.io/Deluxe-web/images/DUNHILL_BLUE.jpeg"},
+  {id:12,name:"Escada Moon",desc:"Fruity manis, segar dan youthful",cat:"gourmand",badge:"",img:"https://websipp.github.io/Deluxe-web/images/ESCADA_MOON.jpeg"},
   {id:13,name:"Grey",desc:"Clean, kalem dan netral",cat:"unisex",badge:"",img:"https://websipp.github.io/Deluxe-web/images/GREY.jpeg"},
   {id:14,name:"Gastby",desc:"Segar maskulin dengan sentuhan sporty",cat:"fresh",badge:"",img:"https://websipp.github.io/Deluxe-web/images/GATSBY.jpeg"},
   {id:15,name:"Giv",desc:"Elegan, ringan dengan nuansa floral fresh",cat:"floral",badge:"",img:"https://websipp.github.io/Deluxe-web/images/GIV.jpeg"},
-  {id:16,name:"Jay Rose",desc:"Mawar manis, lembut dan feminin",cat:"floral",badge:"",img:"https://drive.google.com/thumbnail?id=1OF8RWpcQyYhd2x2URUP9QpiYnxcI9x7n&sz=w800"},
+  {id:16,name:"Jay Rose",desc:"Mawar manis, lembut dan feminin",cat:"floral",badge:"",img:"https://websipp.github.io/Deluxe-web/images/JAY_ROSE.jpeg"},
   {id:17,name:"Manggo",desc:"Buah mangga manis segar, tropis",cat:"gourmand",badge:"",img:"https://websipp.github.io/Deluxe-web/images/MANG0.jpeg"},
   {id:18,name:"Nagita",desc:"Manis soft, elegan dan feminin",cat:"floral",badge:"",img:"https://websipp.github.io/Deluxe-web/images/NAGITA.jpeg"},
   {id:19,name:"One Million",desc:"Manis hangat, bold dan mewah",cat:"oriental",badge:"",img:"https://websipp.github.io/Deluxe-web/images/ONE_MILLION.jpeg"},
@@ -507,25 +541,25 @@ const PRODUCTS=[
   {id:25,name:"212 VIP Man",desc:"Fresh manis, modern dan elegan",cat:"fresh",badge:"best",img:"https://websipp.github.io/Deluxe-web/images/212_VIP_MAN.jpeg"},
 ];
 const FAQS=[
-  {q:"Berapa lama ketahanan aromanya?",a:"Umumnya 4–8 jam di kulit, tergantung varian dan cara pemakaian. Varian Eau de Parfum standar bisa 6–8 jam, sedangkan varian Premium bisa mencapai 8–12 jam atau lebih."},
-  {q:"Bagaimana prosedur pesanan, pengiriman, dan COD?",a:"Pesanan bisa dilakukan melalui website ini atau langsung via WhatsApp. Sebutkan varian, ukuran (30ml/60ml), jumlah, dan alamat. Pengiriman via ekspedisi dengan free ongkir area tertentu. COD tersedia untuk area Bogor Selatan — hubungi kami untuk konfirmasi."},
-  {q:"Apakah ada garansi, retur, atau penukaran?",a:"Kami menjamin produk diterima dalam kondisi baik. Retur hanya berlaku jika barang rusak atau salah kirim. Produk yang sudah dibuka atau terpakai tidak bisa diretur. Penukaran varian bisa dilakukan selama stok tersedia."},
-  {q:"Apa perbedaan parfum original dan parfum premium?",a:"Parfum Original: aroma standar, ketahanan normal untuk sehari-hari. Parfum Premium: aroma lebih kuat, ketahanan lebih lama, menggunakan racikan khusus dengan tambahan konsentrat parfum sehingga kualitas lebih tinggi."},
+  {q:"Berapa lama ketahanan aromanya?",a:"Regular: umumnya 4–6 jam. Premium: bisa mencapai 8–12 jam atau lebih karena menggunakan racikan khusus dengan konsentrat parfum yang lebih tinggi."},
+  {q:"Apa bedanya Regular dan Premium?",a:"Keduanya 30ml. Bedanya ada di racikannya — Regular menggunakan formula standar yang pas untuk sehari-hari, sedangkan Premium menggunakan racikan khusus dengan konsentrat lebih tinggi sehingga aroma lebih kuat, lebih tahan lama, dan lebih intens di kulit."},
+  {q:"Bagaimana cara pesan dan pengiriman?",a:"Pilih produk dan varian → masuk keranjang → checkout → struk otomatis langsung dikirim ke WA penjual. Pengiriman via JNE/J&T/SiCepat, free ongkir area tertentu. COD tersedia untuk Bogor Selatan."},
+  {q:"Apakah ada garansi atau retur?",a:"Kami menjamin produk diterima dalam kondisi baik. Retur hanya berlaku jika barang rusak atau salah kirim. Produk yang sudah dibuka tidak bisa diretur. Penukaran varian bisa dilakukan selama stok tersedia."},
 ];
 const TESTIMONIALS=[
   {stars:5,text:"Wanginya tahan lama banget, dari pagi sampai malam masih tercium. Packaging holographic-nya beda dari parfum lain!",author:"Rina S.",city:"Bogor",product:"Baccarat"},
-  {stars:5,text:"Beli buat hadiah, katanya wanginya enak dan premium banget. Harganya terjangkau untuk kualitas sebagus ini.",author:"Dani R.",city:"Jakarta",product:"212 VIP Man"},
+  {stars:5,text:"Beli yang Premium, mantap banget! Beda jauh sama yang biasa. Worth it banget harganya.",author:"Dani R.",city:"Jakarta",product:"212 VIP Man"},
   {stars:5,text:"Sudah order 3x dan selalu puas! Pengirimannya cepat dan wanginya cocok banget sama selera saya.",author:"Mega P.",city:"Depok",product:"Bulgari Aqua"},
 ];
+const PRODUCT_PLACEHOLDER="https://drive.google.com/thumbnail?id=1OF8RWpcQyYhd2x2URUP9QpiYnxcI9x7n&sz=w800";
 function formatRp(n){return"Rp "+n.toLocaleString('id-ID');}
 function getCart(){try{return JSON.parse(localStorage.getItem("dlx_cart")||"{}")}catch{return{}}}
 function saveCart(c){localStorage.setItem("dlx_cart",JSON.stringify(c))}
 function cartCount(){return Object.values(getCart()).reduce((a,b)=>a+b,0)}
 function updateBadge(){const b=document.getElementById("cartBadge");if(b)b.textContent=cartCount();}
-function addToCart(id,e,size=30){
+function addToCart(id,e,type='reg'){
   if(e)e.stopPropagation();
-  const c=getCart(),k=id+"_"+size;
-  c[k]=(c[k]||0)+1;saveCart(c);
+  const c=getCart(),k=id+"_"+type;c[k]=(c[k]||0)+1;saveCart(c);
   const b=document.getElementById("cartBadge");
   if(b){b.textContent=cartCount();b.classList.add("bump");setTimeout(()=>b.classList.remove("bump"),300);}
 }
@@ -537,8 +571,7 @@ function toggleMenu(){
 }
 function closeMenu(){
   const hb=document.getElementById('hamburger'),mm=document.getElementById('mobileMenu');
-  if(hb)hb.classList.remove('open');
-  if(mm)mm.classList.remove('open');
+  if(hb)hb.classList.remove('open');if(mm)mm.classList.remove('open');
   document.body.style.overflow='';
 }
 function toggleCart(){
@@ -556,23 +589,33 @@ function renderCart(){
     if(items)items.innerHTML='<div class="cart-empty">Keranjang masih kosong ✦</div>';
     if(foot)foot.style.display='none';return;
   }
-  if(foot)foot.style.display='block';
-  let total=0;
+  if(foot)foot.style.display='block';let total=0;
   if(items)items.innerHTML=keys.map(key=>{
-    const[pid,size]=key.split('_');const p=PRODUCTS.find(x=>x.id==pid);if(!p)return'';
-    const unit=parseInt(size)===30?PRICE_30:PRICE_60;const sub=unit*cart[key];total+=sub;
-    return`<div class="cart-item"><img class="c-img" src="${p.img}" alt="${p.name}">
-    <div class="c-info"><div class="c-name">${p.name}</div><div class="c-note">${size}ml</div>
-    <div class="c-row"><div class="c-price">${formatRp(sub)}</div>
-    <div class="qty-ctrl"><button class="qty-btn" onclick="cQty('${key}',-1)">−</button><span class="qty-num">${cart[key]}</span><button class="qty-btn" onclick="cQty('${key}',1)">+</button></div>
-    </div></div></div>`;
+    const[pid,type]=key.split('_');const p=PRODUCTS.find(x=>x.id==pid);if(!p)return'';
+    const unit=type==='prem'?PRICE_PREM:PRICE_REG;
+    const label=type==='prem'?'Premium':'Regular';
+    const sub=unit*cart[key];total+=sub;
+    return`<div class="cart-item">
+      <img class="c-img" src="${p.img||PRODUCT_PLACEHOLDER}" alt="${p.name}">
+      <div class="c-info">
+        <div class="c-name">${p.name}</div>
+        <div class="c-note">${label} · 30ml</div>
+        <div class="c-row">
+          <div class="c-price">${formatRp(sub)}</div>
+          <div class="qty-ctrl">
+            <button class="qty-btn" onclick="cQty('${key}',-1)">−</button>
+            <span class="qty-num">${cart[key]}</span>
+            <button class="qty-btn" onclick="cQty('${key}',1)">+</button>
+          </div>
+        </div>
+      </div>
+    </div>`;
   }).join('');
   const ct=document.getElementById('cartTotal');if(ct)ct.textContent=formatRp(total);
 }
 function cQty(key,d){const c=getCart();c[key]=(c[key]||0)+d;if(c[key]<=0)delete c[key];saveCart(c);renderCart();}
 function goCheckout(){document.body.style.overflow='';window.location.href='checkout.html';}
 
-const PRODUCT_PLACEHOLDER="https://drive.google.com/thumbnail?id=1OF8RWpcQyYhd2x2URUP9QpiYnxcI9x7n&sz=w800";
 function renderProducts(filter='all'){
   const grid=document.getElementById('prodGrid');if(!grid)return;
   const list=filter==='all'?PRODUCTS:PRODUCTS.filter(p=>p.cat===filter);
@@ -582,12 +625,15 @@ function renderProducts(filter='all'){
       <div class="prod-img">
         <img src="${p.img||PRODUCT_PLACEHOLDER}" alt="${p.name}" loading="lazy">
         ${p.badge==='best'?'<span class="prod-badge">Best Seller</span>':''}
-        <button class="prod-add-btn" onclick="addToCart(${p.id},event)" aria-label="Tambah">+</button>
       </div>
       <div class="prod-body">
         <div class="prod-name">${p.name}</div>
         <div class="prod-desc">${p.desc}</div>
-        <div class="prod-price">${formatRp(PRICE_30)} / 30ml</div>
+        <div class="prod-price-wrap">
+          <span class="prod-price-old">${formatRp(PRICE_REG_ORIGINAL)}</span>
+          <span class="prod-price-new">${formatRp(PRICE_REG)}</span>
+        </div>
+        <div class="prod-price-prem">Premium: ${formatRp(PRICE_PREM)}</div>
       </div>
     </div>`).join('');
 }
@@ -618,8 +664,7 @@ function renderFAQ(){
 }
 renderProducts();renderTesti();renderFAQ();updateBadge();
 window.addEventListener('load',()=>{
-  const bg=document.getElementById('heroBg');
-  if(!bg)return;
+  const bg=document.getElementById('heroBg');if(!bg)return;
   bg.style.backgroundImage="url('https://drive.google.com/thumbnail?id=1cpXNKivNyG5NW8mjiPnqw-AVTXaMQYW5&sz=w800')";
   setTimeout(()=>bg.classList.add('loaded'),100);
 });
