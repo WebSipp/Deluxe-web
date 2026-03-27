@@ -3,6 +3,18 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- Open Graph / WhatsApp / Social Media Preview -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://websipp.github.io/Deluxe-web/checkout.html">
+  <meta property="og:title" content="Checkout — Deluxe Parfume">
+  <meta property="og:description" content="Selesaikan pesanan parfum Anda. Struk otomatis langsung dikirim ke WhatsApp.">
+  <meta property="og:image" content="https://drive.google.com/thumbnail?id=1dLDsT5G9n2_Rc9wjfSiOz9cQa0CkJQ6G&sz=w1200">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:site_name" content="Deluxe Parfume">
+  <meta property="og:locale" content="id_ID">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="https://drive.google.com/thumbnail?id=1dLDsT5G9n2_Rc9wjfSiOz9cQa0CkJQ6G&sz=w1200">
 <title>Checkout — Deluxe Parfume</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
@@ -443,13 +455,13 @@ function showReceipt(){
 }
 function sendToWA(){
   const o=orderData;
-  let msg=`🛍️ *PESANAN BARU — DELUXE PARFUME*\n${o.orderId} · ${o.date.toLocaleDateString('id-ID')}\n\n`;
-  msg+=`👤 *${o.name}*\n📱 ${o.wa}\n📍 ${o.city}`;
-  if(o.addr)msg+=`\n🏠 ${o.addr}`;
-  msg+=`\n\n📦 *Pesanan:*\n`;
-  o.items.forEach(i=>{msg+=`  ✦ ${i.name} (${i.label}) ×${i.qty} = ${formatRp(i.sub)}\n`});
-  msg+=`\n💰 *Total: ${formatRp(o.total)}*`;
-  if(o.note)msg+=`\n\n📝 ${o.note}`;
+  let msg=`*PESANAN BARU - DELUXE PARFUME*\n${o.orderId} | ${o.date.toLocaleDateString('id-ID')}\n\n`;
+  msg+=`*Nama :* ${o.name}\n*WA   :* ${o.wa}\n*Kota :* ${o.city}`;
+  if(o.addr)msg+=`\n*Alamat:* ${o.addr}`;
+  msg+=`\n\n*Detail Pesanan:*\n`;
+  o.items.forEach(i=>{msg+=`- ${i.name} (${i.label}) x${i.qty} = ${formatRp(i.sub)}\n`});
+  msg+=`\n*TOTAL: ${formatRp(o.total)}*`;
+  if(o.note)msg+=`\n\nCatatan: ${o.note}`;
   window.open(`https://wa.me/${WA}?text=${encodeURIComponent(msg)}`,'_blank');
 }
 function downloadReceipt(){
